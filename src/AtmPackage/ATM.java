@@ -8,8 +8,8 @@ public class ATM {
 
     public ATM() {
 
-        this.id=0;
-        this.balance=100.0;
+        this.id = 0;
+        this.balance = 100.0;
     }
 
     public ATM(int id, double balance) {
@@ -17,5 +17,33 @@ public class ATM {
         this.balance = balance;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+
+    // methods for deposit and withdraw
+
+
+    public void deposit(double value) {
+
+        balance += value;
+    }
+
+    public void withdraw(double value) {
+
+        balance -= value;
+    }
 }
