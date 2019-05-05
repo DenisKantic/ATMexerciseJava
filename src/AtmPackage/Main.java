@@ -10,7 +10,28 @@ public class Main {
 
         initialBalance(atm);
 
+        Scanner s = new Scanner(System.in);
 
+        do {
+
+            System.out.print("Enter your id: ");
+            int id = s.nextInt();
+
+            if (id > 0 && id < 10) {
+
+                showMenu();
+                System.out.println();
+                int choise = s.nextInt();
+
+                if (choise == 4) {
+                    System.out.println("Thank you for using our service.");
+                    break;
+                } else {
+
+                    switchMethod(id, atm, choise);
+                }
+            }
+        }while (true);
     }
 
 
@@ -24,7 +45,7 @@ public class Main {
         }
     }
 
-    public void showMenu() {
+    public static void showMenu() {
 
         System.out.print("Welcome to ATM Menu. Choose your option: " +
                 "\n1. check balance" +
@@ -33,7 +54,7 @@ public class Main {
                 "\n4. exit");
     }
 
-    public void switchMethod(int id, ATM[] acc, int choise) {
+    public static void switchMethod(int id, ATM[] acc, int choise) {
 
         switch (choise) {
 
@@ -70,16 +91,21 @@ public class Main {
                 Scanner input = new Scanner(System.in);
                 double withdraw = input.nextDouble();
 
-                if (withdraw - acc[id].getBalance() > 0) {
+                if (acc[id].getBalance() - withdraw > 0 || acc[id].getBalance() - withdraw == 0) {
 
                     acc[id].withdraw(withdraw);
 
                     System.out.println("Withdraw transfer completed.");
                     System.out.println("Your account balance is: " + acc[id].getBalance());
+                } else if (acc[id].getBalance() - withdraw < 0) {
+
+                    System.out.println("Your don't have enough money. Your account balance" +
+                            " is: " + acc[id].getBalance());
                 } else {
 
                     System.out.println("Wrong input. Try again");
                 }
+
                 break;
 
             case 4:
